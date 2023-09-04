@@ -1,2 +1,2 @@
 #!/bin/bash
-sed -e 'A/c' -e 'Z/e'
+sed -sed -e 's/A/Z/g' -e 's/c/e/g'
