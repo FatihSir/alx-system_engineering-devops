@@ -1,4 +1,3 @@
-#!/usr/bin/pup
 # Install a package
 
 exec {'pip3 install flask':
