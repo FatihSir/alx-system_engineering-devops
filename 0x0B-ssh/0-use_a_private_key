@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh ubuntu@server01
+ssh ubuntu@100.26.154.142
