@@ -49,3 +49,17 @@ Configure `ufw` so that it blocks all incoming traffic, except the following TCP
 - GitHub repository: `alx-system_engineering-devops`
 - Directory: `0x13-firewall`
 - File: `0-block_all_incoming_traffic_but`
+
+#### 1. Port forwarding
+Firewalls can not only filter requests, they can also forward them.
+
+##### Requirements:
+
+- Configure `web-01` so that its firewall redirects port `8080/TCP` to port `80/TCP`.
+- Your answer file should be a copy of the `ufw` configuration file that you modified to make this happen
+
+#### Repo:
+
+- GitHub repository: `alx-system_engineering-devops`
+- Directory: `0x13-firewall`
+- File: `100-port_forwarding`
