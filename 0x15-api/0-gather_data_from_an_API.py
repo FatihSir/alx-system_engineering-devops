@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """ Gather data from an API """
-
-
-from sys import argv
 import json
-from urllib.request import urlopen
+import sys
+import urllib.request
 
 
 def get_name(users, user_id):
@@ -22,6 +20,7 @@ def get_name(users, user_id):
     for user in users:
         if user['id'] == user_id:
             return user['name'].strip()
+
     return None
 
 
@@ -72,26 +71,25 @@ def print_info(tasks, completed_tasks_count, completed_tasks, user_name):
         raise TypeError('tasks count must be list')
 
     print("Employee {} is done with tasks({}/{}):".format(
-        user_name, completed_tasks_count, tasks
-    ))
+        user_name, completed_tasks_count, tasks))
     for task in completed_tasks:
         print("\t {}".format(task))
 
 
 if __name__ == '__main__':
-    response_to_do = urlopen(
+    response_to_do = urllib.request.urlopen(
         'https://jsonplaceholder.typicode.com/todos')
 
     if response_to_do.getcode() == 200:
-        response_users = urlopen(
+        response_users = urllib.request.urlopen(
             'https://jsonplaceholder.typicode.com/users')
         if response_users.getcode() == 200:
             to_do = json.loads(response_to_do.read().decode('utf-8'))
             users = json.loads(response_users.read().decode('utf-8'))
             if to_do and users:
                 tasks, completed_tasks_count, completed_tasks = (
-                    calculate_tasks(to_do, int(argv[1])))
-                user_name = get_name(users, int(argv[1]))
+                    calculate_tasks(to_do, int(sys.argv[1])))
+                user_name = get_name(users, int(sys.argv[1]))
 
                 print_info(tasks, completed_tasks_count,
                            completed_tasks, user_name)
