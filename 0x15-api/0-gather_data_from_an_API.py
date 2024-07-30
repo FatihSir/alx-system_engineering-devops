@@ -73,9 +73,9 @@ def print_info(tasks, completed_tasks_count, completed_tasks, user_name):
 
 
 if __name__ == '__main__':
-    from sys import argv
-    from urllib.request import urlopen
     import json
+    from urllib.request import urlopen
+    from sys import argv
 
     response_to_do = urlopen(
         'https://jsonplaceholder.typicode.com/todos')
