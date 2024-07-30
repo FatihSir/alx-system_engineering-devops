@@ -2,10 +2,6 @@
 """ Gather data from an API """
 
 
-from urllib import request
-import json
-
-
 def get_name(users, user_id):
     """
     Get the name of a user
@@ -78,18 +74,18 @@ def print_info(tasks, completed_tasks_count, completed_tasks, user_name):
 
 if __name__ == '__main__':
     from sys import argv
+    from urllib.request import urlopen
+    import json
 
-    response_to_do = request.urlopen(
+    response_to_do = urlopen(
         'https://jsonplaceholder.typicode.com/todos')
 
     if response_to_do.getcode() == 200:
-        response_users = request.urlopen(
+        response_users = urlopen(
             'https://jsonplaceholder.typicode.com/users')
         if response_users.getcode() == 200:
-            to_do = json.loads(response_to_do.
-                               read().decode('utf-8'))
-            users = json.loads(response_users.read().
-                               decode('utf-8'))
+            to_do = json.loads(response_to_do.read().decode('utf-8'))
+            users = json.loads(response_users.read().decode('utf-8'))
             if to_do and users:
                 tasks, completed_tasks_count, completed_tasks = (
                     calculate_tasks(to_do, int(argv[1])))
