@@ -16,7 +16,8 @@ def get_name(users, user_id):
 
     for user in users:
         if user['id'] == user_id:
-            return user['name']
+            return user['name'].strip()
+    return None
 
 
 def calculate_tasks(to_do, user_id):
@@ -73,9 +74,9 @@ def print_info(tasks, completed_tasks_count, completed_tasks, user_name):
 
 
 if __name__ == '__main__':
+    from sys import argv
     import json
     from urllib.request import urlopen
-    from sys import argv
 
     response_to_do = urlopen(
         'https://jsonplaceholder.typicode.com/todos')
