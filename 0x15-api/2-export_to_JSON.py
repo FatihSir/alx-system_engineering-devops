@@ -122,12 +122,11 @@ def record_to_json(to_do, users, user_id):
     all_records = []
     file = {}
     user_name = get_user_name(users, user_id)
-    record["username"] = user_name
     for user in to_do:
         if user["userId"] == user_id and user["title"] is not None:
-            record["task"] = user["title"]
-            record["completed"] = user["completed"]
-        all_records.append(record)
+            all_records.append({"task": user["title"],
+                                "completed": user["completed"],
+                                "username": user_name})
     file[f"{user_id}"] = all_records
 
     with open(f"{user_id}.json", 'w', newline='') as json_file:
