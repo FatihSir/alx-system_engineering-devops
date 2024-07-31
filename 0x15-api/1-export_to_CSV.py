@@ -87,7 +87,10 @@ def record_to_csv(to_do, users, user_id):
         user_id (int): The user id needed to be fetched
     """
     all_records = []
-    user_name = get_name(users, user_id)
+    user_name = None
+    for user in users:
+        if user['id'] == user_id:
+            user_name = user['username'].strip()
     for user in to_do:
         if user['userId'] == user_id and user['title'] is not None:
             record = [user_id, user_name, user['completed'], user['title']]
