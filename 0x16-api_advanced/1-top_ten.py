@@ -6,22 +6,27 @@ import requests
 
 def top_ten(subreddit):
     """
-    a recursive function that queries the Reddit API and returns a list
-    containing the titles of all hot articles for a given subreddit
+    Queries the Reddit API and prints the titles of the first 10 hot posts
+    listed for a given subreddit.
+
+    Args:
+        subreddit (str): The subreddit to query.
+
+    If the subreddit is not valid, prints "None".
     """
     url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
     headers = {"User-Agent": "My-User-Agent"}
 
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status()
-
-        data = response.json().get("data", {}).get("children", [])
-        if not data:
-            print("None")
+        if response.status_code == 200:
+            data = response.json().get("data", {}).get("children", [])
+            if data:
+                for child in data:
+                    print(child.get("data", {}).get("title"))
+            else:
+                print("None")
         else:
-            for child in data:
-                print(child.get("data", {}).get("title"))
-
+            print("None")
     except requests.RequestException:
         print("None")
