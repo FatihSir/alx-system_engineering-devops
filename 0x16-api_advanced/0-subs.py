@@ -2,10 +2,12 @@
 """Sub Module"""
 
 
+import requests
+
+
 def number_of_subscribers(subreddit):
     """A function that queries the Reddit API and
     returns the number of subscribers"""
-    import requests
 
     sub_info = requests.get("https://www.reddit.com/r/{}/about.json"
                             .format(subreddit),
