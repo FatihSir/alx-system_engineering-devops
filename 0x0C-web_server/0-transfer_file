@@ -1,0 +1,9 @@
+#!/bin/bash
+# Bash script that transfers a file from our client to a server
+
+if [ "${BASH_ARGC}" -lt 4 ]; then
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit
+fi
+
+scp -o StrictHostKeyChecking=no -i "${BASH_ARGV[0]}" "${BASH_ARGV[3]}" "${BASH_ARGV[1]}@${BASH_ARGV[2]}:~/"
