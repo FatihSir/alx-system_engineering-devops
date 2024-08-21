@@ -6,8 +6,8 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 echo 'Hello World!' | sudo tee /var/www/html/index.html
 
-string="\n\tlocation /redirect_me { \n\t\trewrite \^/redirect_me\$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t\}"
-sudo sed -i "/\tlisten \[::\]:80 default_server;/a\\$string" example.com
+config="\n\tlocation /redirect_me { \n\t\trewrite \^/redirect_me\$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t\}"
+sudo sed -i "/\tlisten \[::\]:80 default_server;/a\\$config" /etc/nginx/sites-available/default
 
 sudo nginx -t
 sudo service nginx restart
